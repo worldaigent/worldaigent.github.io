@@ -1,0 +1,77 @@
+/* CSS Variables for World Aigent Website */
+
+/* Colors */
+:root {
+    /* Primary Colors */
+    --primary-dark-blue: #0367BA;
+    --primary-blue: #01ACBE;
+    --primary-light-blue: #3f51b5;
+    --accent-orange: #45C961;
+    --accent-orange-dark: #34C979;
+
+    /* Neutral Colors */
+    --white: #ffffff;
+    --text-dark: #333333;
+    --text-medium: #555555;
+    --text-light: #777775;
+    --background-light: #f8f9fa;
+    --background-lighter: #f1f3f9;
+    --background-white: #ffffff;
+
+    /* Border Colors */
+    --border-light: #e0e0e0;
+    --border-medium: #d0d0d0;
+
+    /* Shadow Colors */
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.12);
+    --shadow-dark: rgba(0, 0, 0, 0.25);
+
+    /* Hover Colors */
+    --hover-light: rgba(26, 35, 126, 0.1);
+    --hover-medium: rgba(26, 35, 126, 0.2);
+
+    /* Gradient Colors */
+    --gradient-primary: linear-gradient(135deg, var(--primary-dark-blue) 0%, var(--primary-blue) 100%);
+    --gradient-accent: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-orange-dark) 100%);
+
+    /* Typography */
+    --font-size-xs: 0.8rem;
+    --font-size-sm: 0.9rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.1rem;
+    --font-size-xl: 1.2rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 2rem;
+    --font-size-4xl: 2.5rem;
+    --font-size-5xl: 3rem;
+
+    /* Spacing */
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 20px;
+    --spacing-xl: 30px;
+    --spacing-2xl: 40px;
+    --spacing-3xl: 50px;
+    --spacing-4xl: 80px;
+
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 30px;
+
+    /* Transitions */
+    --transition-fast: 0.3s ease;
+    --transition-medium: 0.5s ease;
+    --transition-slow: 0.8s ease;
+
+    /* Z-index */
+    --z-index-dropdown: 1000;
+    --z-index-sticky: 1020;
+    --z-index-fixed: 1030;
+    --z-index-modal-backdrop: 1040;
+    --z-index-modal: 1050;
+    --z-index-popover: 1060;
+    --z-index-tooltip: 1070;
+}
