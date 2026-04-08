@@ -6,16 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>World Aigent</title>
     <script>
-        // Redirect to home page for any route that doesn't exist
-        window.location.href = "/";
+        sessionStorage.setItem('spa_redirect', location.href);
+        location.replace(location.protocol + '//' + location.host + '/');
     </script>
 </head>
 
-<body>
-    <script>
-        // Fallback in case the above redirect doesn't work
-        window.location.replace("/");
-    </script>
-</body>
+<body></body>
 
 </html>
