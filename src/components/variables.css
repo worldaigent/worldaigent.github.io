@@ -13,7 +13,7 @@
     --white: #ffffff;
     --text-dark: #333333;
     --text-medium: #555555;
-    --text-light: #777775;
+    --text-light: #6f6f6d;
     --background-light: #f8f9fa;
     --background-lighter: #f1f3f9;
     --background-white: #ffffff;
@@ -21,6 +21,30 @@
     /* Border Colors */
     --border-light: #e0e0e0;
     --border-medium: #d0d0d0;
+
+    /* Grid rules: hairlines tinted toward the brand blue so the schedule
+       grid reads as part of the identity, not as a default table border. */
+    --rule: rgba(3, 103, 186, 0.16);
+    --rule-strong: rgba(3, 103, 186, 0.38);
+    --tint: rgba(1, 172, 190, 0.06);
+
+    /* Status: green means published/live, and nothing else.
+       The bright green is a MARK color only (rules, dots). Text needs the
+       darker ink: #34C979 on white is ~2.2:1 and fails WCAG AA outright. */
+    --status-live: var(--accent-orange-dark);
+    --status-live-ink: #17794a;
+    --status-pending: #667380;
+
+    /* Typography families */
+    --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, Monaco, Consolas, monospace;
+
+    /* THE measure. One content column for the whole site, so the navbar,
+       every section, and the footer share a left edge. `.container` is
+       declared in both Navbar.css and Footer.css, and both now read these,
+       so whichever wins the cascade produces the same result. */
+    --measure-max: 75rem;
+    --measure-gutter: clamp(1.25rem, 4vw, 2.5rem);
 
     /* Shadow Colors */
     --shadow-light: rgba(0, 0, 0, 0.08);
@@ -35,31 +59,43 @@
     --gradient-primary: linear-gradient(135deg, var(--primary-dark-blue) 0%, var(--primary-blue) 100%);
     --gradient-accent: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-orange-dark) 100%);
 
-    /* Typography */
-    --font-size-xs: 0.8rem;
-    --font-size-sm: 0.9rem;
-    --font-size-base: 1rem;
-    --font-size-lg: 1.1rem;
-    --font-size-xl: 1.2rem;
-    --font-size-2xl: 1.5rem;
-    --font-size-3xl: 2rem;
-    --font-size-4xl: 2.5rem;
-    --font-size-5xl: 3rem;
+    /* Typography, fluid.
+       Every step is clamp(min, <rem> + <vw>, max). The rem term is not
+       optional: a size expressed in vw alone ignores the reader's browser
+       font-size and zoom entirely, so a fluid scale built only from vw is an
+       accessibility regression dressed up as responsive design. */
+    --font-size-xs: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
+    --font-size-sm: clamp(0.8125rem, 0.78rem + 0.18vw, 0.875rem);
+    --font-size-base: clamp(0.9375rem, 0.9rem + 0.25vw, 1.0625rem);
+    --font-size-lg: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
+    --font-size-xl: clamp(1.125rem, 1.05rem + 0.4vw, 1.375rem);
+    --font-size-2xl: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem);
+    --font-size-3xl: clamp(1.625rem, 1.35rem + 1.3vw, 2.25rem);
+    --font-size-4xl: clamp(1.875rem, 1.45rem + 2vw, 3rem);
+    --font-size-5xl: clamp(2.25rem, 1.6rem + 3.2vw, 4.25rem);
 
-    /* Spacing */
-    --spacing-xs: 8px;
-    --spacing-sm: 12px;
-    --spacing-md: 16px;
-    --spacing-lg: 20px;
-    --spacing-xl: 30px;
-    --spacing-2xl: 40px;
-    --spacing-3xl: 50px;
-    --spacing-4xl: 80px;
+    /* Spacing: rem, and fluid from --spacing-xl up.
+       Because the large steps already shrink with the viewport, most layouts
+       need no padding override at a breakpoint at all. */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.25rem;
+    --spacing-xl: clamp(1.25rem, 1rem + 1.2vw, 1.875rem);
+    --spacing-2xl: clamp(1.5rem, 1.1rem + 2vw, 2.5rem);
+    --spacing-3xl: clamp(2rem, 1.4rem + 3vw, 3.125rem);
+    --spacing-4xl: clamp(2.5rem, 1.5rem + 5vw, 5rem);
 
-    /* Border Radius */
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 30px;
+    /* Chrome */
+    --nav-h: clamp(3.5rem, 3rem + 2vw, 5rem);
+
+    /* Border Radius: px on purpose. A radius that scales with the viewport
+       reads as a rendering artifact, not as a design decision. Hairline
+       borders (1px/2px) stay px for the same reason: they must stay crisp. */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1.875rem;
+    --radius-crisp: 2px;
 
     /* Transitions */
     --transition-fast: 0.3s ease;

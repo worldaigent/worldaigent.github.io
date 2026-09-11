@@ -21,3 +21,12 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# claude code local overrides
+.claude/settings.local.json
+
+# Internal context, NEVER commit: this repository is public.
+# product-truth.md describes the backend architecture, the GCP project name,
+# internal script and table names, and the full command surface. Publishing it
+# would undo the whole point of keeping that material off the website.
+.claude/docs/product-truth.md

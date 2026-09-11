@@ -1,167 +1,128 @@
-.contact-page {
-    min-height: 100vh;
-    background-color: var(--background-white);
-    color: var(--text-dark);
-}
+/* Contact, page-specific only. Everything shared comes from wa-system.css via
+   the `wa-page` class. MOBILE FIRST: base is the phone rule; @media adds. */
 
-.section {
-    padding: var(--spacing-4xl) 0;
-}
+@import url('./wa-system.css');
 
-.section.hero {
-    background: var(--gradient-primary);
-    color: var(--white);
-    text-align: center;
-}
-
-.section.hero h1 {
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--spacing-xl);
-    font-weight: 700;
-}
-
-.section.hero p {
-    font-size: var(--font-size-xl);
-    max-width: 800px;
-    margin: 0 auto;
-    opacity: 0.9;
-    line-height: 1.6;
-}
-
-.section.contact-form {
-    background-color: var(--background-light);
-}
-
-.contact-container {
-    max-width: 1200px;
-    margin: 0 auto;
+.contact-page .ct-layout {
+    max-width: var(--wa-max);
+    margin-inline: auto;
+    padding-inline: var(--wa-gutter);
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: var(--spacing-2xl);
-    align-items: start;
 }
 
-.contact-info h2 {
-    font-size: var(--font-size-3xl);
-    margin-bottom: var(--spacing-xl);
-    color: var(--primary-dark-blue);
+@media (min-width: 48em) {
+    .contact-page .ct-layout {
+        grid-template-columns: 1fr 1.4fr;
+        gap: var(--spacing-4xl);
+    }
 }
 
-.contact-description {
+/* min-width:0 because grid children refuse to shrink below their content otherwise,
+   which is how a long email address widens the whole page on a phone. */
+.contact-page .ct-aside,
+.contact-page .ct-form {
+    min-width: 0;
+    padding-top: var(--spacing-lg);
+    border-top: 2px solid var(--primary-dark-blue);
+}
+
+.contact-page .ct-layout h2 {
     font-size: var(--font-size-lg);
-    line-height: 1.6;
-    color: var(--text-medium);
-    margin-bottom: var(--spacing-2xl);
-}
-
-.info-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: var(--spacing-xl);
-    padding: var(--spacing-xl);
-    background: var(--background-white);
-    border-radius: var(--radius-md);
-    box-shadow: 0 4px 15px var(--shadow-light);
-}
-
-.info-icon {
-    width: 50px;
-    height: 50px;
-    background-color: var(--primary-dark-blue);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: var(--spacing-xl);
-    flex-shrink: 0;
-}
-
-.info-icon i {
-    color: var(--white);
-    font-size: var(--font-size-lg);
-}
-
-.info-text h3 {
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--spacing-sm);
     color: var(--primary-dark-blue);
-}
-
-.info-text p {
-    color: var(--text-medium);
-}
-
-.contact-form-wrapper h2 {
-    font-size: var(--font-size-3xl);
-    margin-bottom: var(--spacing-xl);
-    color: var(--primary-dark-blue);
-
-}
-
-.form-group {
     margin-bottom: var(--spacing-lg);
 }
 
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: var(--spacing-md);
-    border: 2px solid var(--border-light);
-    border-radius: var(--radius-sm);
+.contact-page .ct-email {
+    font-family: var(--font-mono);
     font-size: var(--font-size-base);
-    transition: border-color var(--transition-fast);
+    color: var(--text-dark);
+    text-decoration: none;
+    border-bottom: 2px solid var(--primary-blue);
+    padding-bottom: 2px;
+    overflow-wrap: break-word;
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary-dark-blue);
+.contact-page .ct-email:hover {
+    color: var(--primary-blue);
 }
 
-.form-group textarea {
-    resize: vertical;
-    min-height: 150px;
+.contact-page .ct-note {
+    margin-top: var(--spacing-lg);
+    font-size: var(--font-size-sm);
+    color: var(--text-light);
+    max-width: 38ch;
 }
 
-.submit-button {
-    background: var(--gradient-accent);
-    color: var(--white);
-    border: none;
-    padding: var(--spacing-md) var(--spacing-xl);
-    font-size: var(--font-size-lg);
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+/* ---------- Form ---------- */
+
+.contact-page .ct-field {
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Real labels, not placeholders: a placeholder disappears the moment someone
+   types, so the field loses its name exactly when it is being filled in. */
+.contact-page .ct-field label {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--text-medium);
+    margin-bottom: var(--spacing-xs);
+}
+
+.contact-page .ct-field input,
+.contact-page .ct-field textarea {
     width: 100%;
-    margin: 0 auto;
+    font-family: inherit;
+    font-size: var(--font-size-base);
+    color: var(--text-dark);
+    background: var(--background-white);
+    padding: 0.7em 0.85em;
+    border: 1px solid var(--rule-strong);
+    border-radius: var(--radius-crisp);
 }
 
-.submit-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(26, 35, 126, 0.3);
+.contact-page .ct-field textarea {
+    resize: vertical;
+    min-height: 7rem;
 }
 
-@media (max-width: 768px) {
-    .section {
-        padding: var(--spacing-3xl) var(--spacing-xl);
-    }
+.contact-page .ct-field input:focus-visible,
+.contact-page .ct-field textarea:focus-visible {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: 1px;
+    border-color: var(--primary-blue);
+}
 
-    .section.hero h1 {
-        font-size: var(--font-size-3xl);
-    }
+.contact-page .ct-form .wa-btn {
+    flex: 0 0 auto;
+    cursor: pointer;
+    font-family: inherit;
+}
 
-    .section.hero p {
-        font-size: var(--font-size-base);
-        padding: 0 var(--spacing-md);
-    }
+/* Off-screen rather than display:none, because some bots skip anything with
+   display:none and would sail past the trap. aria-hidden + tabIndex keep it
+   away from screen readers and the keyboard. */
+.contact-page .ct-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
 
-    .contact-container {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-    }
+.contact-page .wa-btn[disabled] {
+    opacity: 0.6;
+    cursor: default;
+}
 
-    .contact-info h2,
-    .contact-form-wrapper h2 {
-        font-size: var(--font-size-2xl);
-    }
+.contact-page .ct-status:empty {
+    margin-top: 0;
+}
+
+.contact-page .ct-status {
+    margin-top: var(--spacing-lg);
+    font-size: var(--font-size-sm);
+    color: var(--text-light);
+    max-width: 52ch;
 }

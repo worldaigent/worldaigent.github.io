@@ -3,18 +3,22 @@
     background-color: var(--primary-dark-blue);
     color: var(--white);
     padding: var(--spacing-xl) 0 var(--spacing-lg);
-    width: 100dvw;
+    width: 100%;
 }
 
+/* Shares the site measure so the footer columns line up with the navbar and
+   every page section. min() keeps the column from overflowing narrow screens. */
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
     gap: var(--spacing-2xl);
-    margin-bottom: var(--spacing-2xl);
+    max-width: var(--measure-max);
+    margin: 0 auto var(--spacing-2xl);
+    padding-inline: var(--measure-gutter);
 }
 
 .footer-section {
-    margin-left: 3vw;
+    margin-left: 0;
 }
 
 .footer-section h3 {
@@ -106,15 +110,15 @@
 }
 
 .container {
-    max-width: 90dvw;
+    max-width: var(--measure-max);
     margin: 0 auto;
-    padding: 0 var(--spacing-xl);
+    padding: 0 var(--measure-gutter);
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
     .footer {
-        padding: var(--spacing-2xl) 5dvw var(--spacing-xl);
+        padding: var(--spacing-2xl) var(--measure-gutter) var(--spacing-xl);
     }
 
     .footer-content {
@@ -173,7 +177,7 @@
 
 @media (max-width: 480px) {
     .footer {
-        padding: var(--spacing-xl) 5dvw var(--spacing-md);
+        padding: var(--spacing-xl) var(--measure-gutter) var(--spacing-md);
     }
 
     .footer-content {
@@ -215,4 +219,26 @@
     .footer-bottom p {
         font-size: var(--font-size-xs);
     }
+}
+
+/* Legal links, recovered from the deployed stylesheet. */
+.footer-legal-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-xs);
+}
+.footer-legal-link {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: var(--font-size-xs);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+.footer-legal-link:hover {
+    color: var(--white);
+}
+.footer-legal-sep {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: var(--font-size-xs);
 }

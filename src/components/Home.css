@@ -1,285 +1,174 @@
-.home-page {
-    min-height: 100vh;
-    background-color: var(--background-white);
+/* Home, page-specific: the week timetable that acts as the hero image.
+   Everything else comes from wa-system.css via the `wa-page` class. */
+
+@import url('./wa-system.css');
+
+.home-page .wa-h1-line {
+    display: block;
+}
+
+/* ---------- The week: the hero image, built as a real timetable ----------
+   The gutter lives on the wrapper so the grid's own rules land exactly on the
+   text edge. A border on a padded box would sit a gutter-width outside it. */
+
+.home-page .wa-week {
+    max-width: var(--wa-max);
+    margin-inline: auto;
+    padding: 0 var(--wa-gutter) var(--spacing-4xl);
+    /* Lets the grid respond to the space IT has rather than to the viewport,
+       the right question for a component that could also sit in a sidebar. */
+    container-type: inline-size;
+    container-name: week;
+}
+
+/* Seven columns cannot hold a legible time on a phone, so the week starts as a
+   swipeable strip that keeps its shape, and becomes a full week when it fits. */
+.home-page .wa-week-grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(7rem, 1fr);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    /* Snapping makes the clipped column read as a strip you swipe rather than
+       as a layout that broke. Dropped again once all seven days fit. */
+    scroll-snap-type: x proximity;
+    border-top: 1px solid var(--rule-strong);
+    border-bottom: 1px solid var(--rule-strong);
+}
+
+@container week (min-width: 44rem) {
+    .home-page .wa-week-grid {
+        grid-auto-flow: row;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        overflow-x: visible;
+        scroll-snap-type: none;
+    }
+}
+
+.home-page .wa-day {
+    border-left: 1px solid var(--rule);
+    padding: var(--spacing-md) var(--spacing-sm) var(--spacing-xl);
+    min-height: 8.25rem;
+    scroll-snap-align: start;
+}
+
+/* Flush outer columns, so MON sits on the same line as the headline. */
+.home-page .wa-day:first-child {
+    border-left: none;
+    padding-left: 0;
+}
+
+.home-page .wa-day:last-child {
+    padding-right: 0;
+}
+
+@container week (min-width: 44rem) {
+    .home-page .wa-day {
+        min-height: 10.5rem;
+    }
+}
+
+/* Three-letter day headers: the vernacular of an actual timetable, which is
+   why caps are right here and nowhere else on the page. */
+.home-page .wa-day-name {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-light);
+    margin-bottom: var(--spacing-lg);
+}
+
+.home-page .wa-slot {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    padding-left: var(--spacing-sm);
+    border-left: 2px solid var(--status-live);
+}
+
+.home-page .wa-slot-scheduled {
+    border-left-style: dotted;
+    border-left-color: var(--status-pending);
+}
+
+.home-page .wa-slot-empty {
+    border-left: none;
+}
+
+/* Mono for the times: these are tabular figures doing tabular work. */
+.home-page .wa-slot-time {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
     color: var(--text-dark);
 }
 
-.section {
-    padding: var(--spacing-4xl) 0;
-}
-
-.section.hero {
-    background: var(--gradient-primary);
-    color: var(--white);
-    text-align: center;
-    display: flex;
-    align-items: center;
-}
-
-.hero-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-xl);
-}
-
-.hero-content h1 {
-    font-size: var(--font-size-5xl);
-    margin-bottom: var(--spacing-xl);
-    font-weight: 700;
-    line-height: 1.2;
-}
-
-.hero-content p {
-    font-size: var(--font-size-xl);
-    max-width: 800px;
-    margin: 0 auto var(--spacing-xl);
-    opacity: 0.9;
-    line-height: 1.6;
-}
-
-.hero-body {
-    font-size: var(--font-size-lg);
-    line-height: 1.6;
-    margin-bottom: var(--spacing-2xl);
-    opacity: 0.95;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: var(--spacing-xl);
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 30px;
-}
-
-.cta-button {
-    background: var(--gradient-accent);
-    color: var(--white);
-    padding: var(--spacing-lg) var(--spacing-2xl);
-    text-decoration: none;
-    border-radius: var(--radius-sm);
-    font-weight: 600;
-    font-size: var(--font-size-lg);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-    display: inline-block;
-}
-
-.cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
-    cursor: pointer;
-}
-
-.secondary-button {
-    background: transparent;
-    color: var(--white);
-    padding: var(--spacing-lg) var(--spacing-2xl);
-    text-decoration: none;
-    border: 2px solid var(--white);
-    border-radius: var(--radius-sm);
-    font-weight: 600;
-    font-size: var(--font-size-lg);
-    transition: all var(--transition-fast);
-    display: inline-block;
-}
-
-.secondary-button:hover {
-    background: var(--white);
-    color: var(--primary-dark-blue);
-    cursor: pointer;
-}
-
-.section.product-overview {
-    background-color: var(--background-light);
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-}
-
-.section.product-overview h2 {
-    text-align: center;
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--spacing-xl);
-    color: var(--primary-dark-blue);
-}
-
-.section.product-overview p {
-    text-align: center;
-    font-size: var(--font-size-xl);
-    max-width: 900px;
-    margin: 0 auto var(--spacing-2xl);
-    line-height: 1.6;
+.home-page .wa-slot-format {
+    font-size: var(--font-size-sm);
     color: var(--text-medium);
 }
 
-.section.product-overview.container {
-    align-self: center;
+.home-page .wa-slot-state {
+    font-size: var(--font-size-xs);
+    color: var(--status-live-ink);
+    margin-top: 0.125rem;
 }
 
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-2xl);
-    max-width: 1200px;
-    margin: 0 auto;
+.home-page .wa-slot-scheduled .wa-slot-state {
+    color: var(--status-pending);
 }
 
-.feature-card {
-    background: var(--background-white);
-    padding: var(--spacing-2xl) var(--spacing-xl);
-    border-radius: var(--radius-md);
+.home-page .wa-caption {
+    margin-top: var(--spacing-lg);
+    margin-inline: auto;
+    font-size: var(--font-size-sm);
+    color: var(--text-light);
+    max-width: 56ch;
     text-align: center;
-    box-shadow: 0 4px 15px var(--shadow-light);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px var(--shadow-medium);
-}
-
-.feature-icon {
-    font-size: 3rem;
-    margin-bottom: var(--spacing-xl);
-}
-
-.feature-card h3 {
-    font-size: var(--font-size-2xl);
-    margin-bottom: var(--spacing-lg);
-    color: var(--primary-dark-blue);
-}
-
-.feature-card p {
-    line-height: 1.6;
-    color: var(--text-medium);
-}
-
-.section.use-cases-teaser {
-    background-color: var(--background-white);
-}
-
-.section.use-cases-teaser h2 {
-    text-align: center;
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--spacing-3xl);
-    color: var(--primary-dark-blue);
-}
-
-.use-cases-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-2xl);
-    margin: 0 auto;
-}
-
-.use-case-card {
-    background: var(--gradient-primary);
-    padding: var(--spacing-xl);
-    border-radius: var(--radius-md);
-    text-align: center;
-    transition: transform var(--transition-fast);
-}
-
-.use-case-card:hover {
-    transform: translateY(-5px);
-}
-
-.use-case-card h3 {
-    font-size: var(--font-size-xl);
-    margin-bottom: var(--spacing-lg);
-    color: var(--primary-dark-blue);
-}
-
-.use-case-card p {
-    line-height: 1.6;
-    color: var(--text-medium);
-}
-
-.section.technology {
-    background-color: var(--background-light);
-}
-
-.section.technology h2 {
-    text-align: center;
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--spacing-xl);
-    color: var(--primary-dark-blue);
-}
-
-.section.technology p {
-    text-align: center;
-    font-size: var(--font-size-xl);
-    max-width: 900px;
-    margin: 0 auto var(--spacing-2xl);
-    line-height: 1.6;
-    color: var(--text-medium);
-}
-
-.tech-badges {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: var(--spacing-xl);
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.badge {
-    background: var(--background-white);
-    color: var(--primary-dark-blue);
-    padding: var(--spacing-md) var(--spacing-xl);
-    border-radius: var(--radius-lg);
-    font-weight: 600;
-    box-shadow: 0 4px 15px var(--shadow-light);
-    transition: transform var(--transition-fast);
-}
-
-.badge:hover {
-    transform: translateY(-3px);
-    cursor: default;
-}
-
-@media (max-width: 768px) {
-    .section {
-        padding: var(--spacing-3xl) var(--spacing-xl);
+/* The single orchestrated motion on the page: the week fills in, once, on load
+   the machine doing its job. Nothing else animates.
+   Declared INSIDE no-preference, so a reader who asked for less motion has
+   nothing to override and this file needs no !important to honour it. */
+@media (prefers-reduced-motion: no-preference) {
+    .home-page .wa-slot {
+        animation: wa-slot-in 480ms ease-out backwards;
     }
 
-    .section.hero {
-        min-height: 80vh;
+    .home-page .wa-day:nth-child(1) .wa-slot {
+        animation-delay: 120ms;
     }
 
-    .hero-content h1 {
-        font-size: var(--font-size-3xl);
+    .home-page .wa-day:nth-child(3) .wa-slot {
+        animation-delay: 260ms;
     }
 
-    .hero-content p {
-        font-size: var(--font-size-base);
+    .home-page .wa-day:nth-child(4) .wa-slot {
+        animation-delay: 400ms;
     }
 
-    .hero-body {
-        font-size: var(--font-size-base);
+    .home-page .wa-day:nth-child(5) .wa-slot {
+        animation-delay: 540ms;
     }
 
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
+    .home-page .wa-day:nth-child(7) .wa-slot {
+        animation-delay: 680ms;
     }
 
-    .cta-button,
-    .secondary-button {
-        width: 200px;
-    }
+    @keyframes wa-slot-in {
+        from {
+            opacity: 0;
+            transform: translateY(0.375rem);
+        }
 
-    .features-grid,
-    .use-cases-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-    }
-
-    .section.product-overview h2,
-    .section.use-cases-teaser h2,
-    .section.technology h2 {
-        font-size: var(--font-size-3xl);
+        to {
+            opacity: 1;
+            transform: none;
+        }
     }
 }
+

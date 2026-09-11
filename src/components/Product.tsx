@@ -1,208 +1,218 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Product.css';
 
-const Product = () => {
+const deliverables = [
+    {
+        term: 'A command your team already knows',
+        detail: 'One Slack command, plain English. "Post three times this week about the new release." Nobody learns a dashboard, nobody gets a login, nobody is trained.'
+    },
+    {
+        term: 'Writing that sounds like you',
+        detail: 'Posts, carousels and articles written in your company\'s voice, built from your business, your audience and what your own account responds to.'
+    },
+    {
+        term: 'An image for every post',
+        detail: 'Made to match what that specific post says, not pulled from a stock library everyone else is using.'
+    },
+    {
+        term: 'Published where you want it',
+        detail: 'Personal profiles, company pages, or both at once. Your days, your times, your timezone.'
+    },
+    {
+        term: 'Your own words when you want them',
+        detail: 'Hand it the exact text and it publishes the exact text, punctuation included. Nothing gets rewritten behind your back.'
+    },
+    {
+        term: 'A report you could hand to a client',
+        detail: 'A weekly and monthly PDF, as if it were prepared by your Community Manager.'
+    }
+];
+
+const control = [
+    {
+        term: 'See what is coming',
+        detail: 'Ask what is scheduled and you get the list, with dates and times.'
+    },
+    {
+        term: 'Change your mind',
+        detail: 'Move a post to another day, rewrite one before it goes out, or cancel it. All from the same Slack thread.'
+    },
+    {
+        term: 'Pause everything',
+        detail: 'Quiet week, company news, anything. Pause the campaign and resume it when you are ready. Nothing is lost while it waits.'
+    },
+    {
+        term: 'Publish right now',
+        detail: 'Something time-sensitive? Skip the schedule and send it immediately.'
+    }
+];
+
+const sources = [
+    {
+        term: 'A document',
+        detail: 'Drop a PDF into Slack: a report, a whitepaper, a deck. The content comes from what is actually in it.'
+    },
+    {
+        term: 'A video',
+        detail: 'A webinar recording, a talk, an interview. Send the link and the ideas in it become posts.'
+    },
+    {
+        term: 'What you already know',
+        detail: 'Your services, your positioning, your audience. Told once during setup, used every time after.'
+    }
+];
+
+const Product: React.FC = () => {
     return (
-        <div className="product-page">
-            <section className="section what-it-is">
-                <div className="container">
-                    <h1>The AI Workflow Platform Built for Production</h1>
+        <div className="product-page wa-page">
+            <header className="wa-hero">
+                <div className="wa-measure">
+                    <h1>Your LinkedIn presence, handled.</h1>
+                    <p className="wa-lead">
+                        World Aigent writes, illustrates, schedules, publishes and reports on
+                        your company's LinkedIn, from one sentence in Slack. Here is exactly
+                        what that means in practice.
+                    </p>
+                    <div className="wa-actions">
+                        <Link to="/contact" className="wa-btn">Talk to us</Link>
+                        <Link to="/how-it-works" className="wa-btn wa-btn-quiet">See how it works</Link>
+                    </div>
+                </div>
+            </header>
+
+            {/* The single most persuasive thing on the page: the division of labour. */}
+            <section className="wa-section pd-split-section">
+                <div className="wa-section-head">
+                    <h2>What you do, and what we do</h2>
+                </div>
+                <div className="pd-split">
+                    <div className="pd-col pd-col-you">
+                        <h3>Your team</h3>
+                        <ul>
+                            <li>Says what the company wants to talk about</li>
+                            <li>Approves anything worth a second look</li>
+                        </ul>
+                    </div>
+                    <div className="pd-col pd-col-us">
+                        <h3>World Aigent</h3>
+                        <ul>
+                            <li>Decides what to publish and when</li>
+                            <li>Writes every post, carousel and article</li>
+                            <li>Creates the image for each one</li>
+                            <li>Schedules across your chosen days and times</li>
+                            <li>Publishes to profiles and company pages</li>
+                            <li>Measures what happened</li>
+                            <li>Sends the report</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section className="wa-section wa-section-tinted">
+                <div className="wa-section-head">
+                    <h2>What you get</h2>
+                </div>
+                <dl className="wa-defs">
+                    {deliverables.map(({ term, detail }) => (
+                        <div className="wa-def" key={term}>
+                            <dt>{term}</dt>
+                            <dd>{detail}</dd>
+                        </div>
+                    ))}
+                </dl>
+            </section>
+
+            <section className="wa-section">
+                <div className="wa-section-head">
+                    <h2>You stay in control</h2>
                     <p>
-                        World Aigent is a multi-tenant SaaS platform that lets businesses
-                        run AI-powered workflows at scale. A one-time implementation to deploy AI workflow agents, followed by a monthly platform subscription to host, monitor, and optimize the automations.
+                        Automatic does not mean out of your hands. Everything scheduled can
+                        be changed, moved or stopped, in the same place you asked for it.
                     </p>
+                </div>
+                <dl className="wa-defs">
+                    {control.map(({ term, detail }) => (
+                        <div className="wa-def" key={term}>
+                            <dt>{term}</dt>
+                            <dd>{detail}</dd>
+                        </div>
+                    ))}
+                </dl>
+            </section>
+
+            <section className="wa-section wa-section-tinted">
+                <div className="wa-section-head">
+                    <h2>Where the content comes from</h2>
                     <p>
-                        Clients connect via API or
-                        webhook and define the task — text transformation, document
-                        processing, image generation, or conversational AI. The platform
-                        handles execution, retries, observability, and usage billing.
+                        You are not starting from a blank page every week. The material you
+                        already have becomes the material it publishes.
+                    </p>
+                </div>
+                <dl className="wa-defs">
+                    {sources.map(({ term, detail }) => (
+                        <div className="wa-def" key={term}>
+                            <dt>{term}</dt>
+                            <dd>{detail}</dd>
+                        </div>
+                    ))}
+                </dl>
+            </section>
+
+            <section className="wa-section">
+                <div className="wa-section-head">
+                    <h2>How it works commercially</h2>
+                </div>
+                <div className="pd-commercial">
+                    <div className="pd-phase">
+                        <h3>Set-up</h3>
+                        <p>
+                            A one-time implementation. We connect your accounts, learn your
+                            business and your voice, and get the first campaign running. You
+                            are not handed a tool and left to configure it.
+                        </p>
+                    </div>
+                    <div className="pd-phase">
+                        <h3>Then, monthly</h3>
+                        <p>
+                            One fixed monthly fee covers everything after that: the
+                            publishing, the reporting, and the changes you ask for along
+                            the way. Not per post, not per account, not per request. The
+                            invoice is the same every month.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section className="wa-section wa-section-tinted">
+                <div className="wa-section-head">
+                    <h2>Beyond LinkedIn</h2>
+                    <p>
+                        LinkedIn is what we run for clients today. It is not the only thing
+                        the platform can run.
+                    </p>
+                </div>
+                <div className="wa-status-single">
+                    <ul className="wa-status-list wa-status-list-live">
+                        <li>Email, drafted for you or sent exactly as written</li>
+                        <li>Documents and video turned into usable content</li>
+                        <li>Scheduled reporting, delivered without anyone asking</li>
+                    </ul>
+                    <p className="wa-closing-note">
+                        And when your team needs something else automated, we build it for
+                        you on the same engine.
                     </p>
                 </div>
             </section>
 
-            <section className="section key-features">
-                <div className="container">
-                    <h2>Key Features</h2>
-
-                    <div className="feature-grid">
-                        <div className="feature-block">
-                            <h3>Durable Workflow Orchestration</h3>
-                            <p>
-                                Every workflow is powered by Temporal, the orchestration engine trusted
-                                by Stripe, Netflix, and Coinbase. Long-running workflows survive
-                                restarts, crashes, and network failures without losing state or
-                                requiring manual intervention.
-                            </p>
-                        </div>
-
-                        <div className="feature-block">
-                            <h3>AI Model Execution via Vertex AI</h3>
-                            <p>
-                                World Aigent uses Google Cloud's Vertex AI as the primary model
-                                execution layer. Supported capabilities include text generation,
-                                text transformation, structured output, and image generation.
-                                OpenRouter serves as a fallback provider for resilience.
-                            </p>
-                        </div>
-
-                        <div className="feature-block">
-                            <h3>Multi-Step AI Pipelines with LangGraph</h3>
-                            <p>
-                                Complex tasks are handled by LangGraph pipelines running inside
-                                Temporal activities. LangGraph manages prompt construction,
-                                multi-step reasoning, and deterministic structured output formatting —
-                                ensuring consistent, auditable results on every run.
-                            </p>
-                        </div>
-
-                        <div className="feature-block">
-                            <h3>Per-Client Isolation</h3>
-                            <p>
-                                Every client runs in a dedicated Temporal namespace. Workflow history,
-                                usage data, and integrations are fully separated. No workflow from one
-                                client can observe or affect another.
-                            </p>
-                        </div>
-
-                        <div className="feature-block">
-                            <h3>File and Report Processing</h3>
-                            <p>
-                                Clients can submit PDFs, Excel files, images, and other documents for
-                                AI processing. Files are stored securely in Google Cloud Storage.
-                                Workflow payloads never contain binary data — only references.
-                            </p>
-                        </div>
-
-                        <div className="feature-block">
-                            <h3>Flexible Scheduling</h3>
-                            <p>
-                                Workflows can run on demand or on a cron schedule. Daily reports,
-                                weekly summaries, and monthly exports are first-class citizens of
-                                the platform.
-                            </p>
-                        </div>
-
-                        <div className="feature-block">
-                            <h3>External API Integrations</h3>
-                            <p>
-                                The platform connects to external APIs as part of any workflow.
-                                Credentials are stored securely in Google Secret Manager and never
-                                appear in the database or workflow history.
-                            </p>
-                        </div>
-
-                        <div className="feature-block">
-                            <h3>MCP-Native: Connect Any AI Agent to Your Workflows</h3>
-                            <p>
-                                World Aigent exposes its workflow engine as a Model Context Protocol
-                                (MCP) server. Any MCP-compatible AI agent — including Claude Desktop,
-                                Cursor, or your own custom agent — can discover, trigger, and monitor
-                                your workflows without writing a single line of integration code.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section className="section workflow-model">
-                <div className="container">
-                    <h2>Workflow Input Model</h2>
-                    <div className="code-block">
-                        <pre>
-                            <code>
-                                {`class AIWorkflowInput(BaseModel):
-    client_id: str
-    task_type: str      # text_transform | report_clean | conversation | generate_image
-    model_name: str
-    input_text: str | None = None
-    prompt: str | None = None
-    output_format: str | None = None
-    file_ref: str | None = None     # GCS URI for file-based workflows
-    session_id: str | None = None   # for conversational workflows`}
-                            </code>
-                        </pre>
-                    </div>
-                    <p className="code-caption">
-                        Every workflow is triggered with a typed, validated input.
-                        The platform routes it to the correct handler, executes it durably,
-                        and returns a result reference when complete.
+            <section className="wa-cta">
+                <div className="wa-measure">
+                    <h2>Let's talk about your account</h2>
+                    <p>
+                        Tell us what your company wants to be known for. We will tell you
+                        what we would publish and what it would take to run it.
                     </p>
-                </div>
-            </section>
-
-            <section className="section workflow-model">
-                <h2>Endpoints</h2>
-                <div className="code-block">
-                    <pre>
-                        <code>
-                            {`run_workflow         Trigger any AI workflow for a client
-get_workflow_status  Check the status of a running or completed workflow
-list_workflows       List all available workflow types for a client
-get_usage            Retrieve token and cost usage for a client by period`}
-                        </code>
-                    </pre>
-                </div>
-                <p className="code-caption">
-                    MCP tools are authenticated with the same API key as REST requests.
-                    No separate credentials. No additional setup for existing clients.
-                </p>
-            </section>
-
-            <section className="section technology-stack">
-                <div className="container">
-                    <h2>Technology Stack</h2>
-                    <div className="tech-table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Layer</th>
-                                    <th>Technology</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Cloud Infrastructure</td>
-                                    <td>Google Cloud (Cloud Run / GKE Autopilot)</td>
-                                </tr>
-                                <tr>
-                                    <td>AI Models</td>
-                                    <td>Vertex AI (primary), OpenRouter (fallback)</td>
-                                </tr>
-                                <tr>
-                                    <td>Workflow Orchestration</td>
-                                    <td>Temporal</td>
-                                </tr>
-                                <tr>
-                                    <td>AI Pipeline Construction</td>
-                                    <td>LangGraph</td>
-                                </tr>
-                                <tr>
-                                    <td>API Layer</td>
-                                    <td>FastAPI</td>
-                                </tr>
-                                <tr>
-                                    <td>Storage</td>
-                                    <td>Google Cloud Storage</td>
-                                </tr>
-                                <tr>
-                                    <td>Database</td>
-                                    <td>Cloud SQL for PostgreSQL</td>
-                                </tr>
-                                <tr>
-                                    <td>Secrets</td>
-                                    <td>Google Secret Manager</td>
-                                </tr>
-                                <tr>
-                                    <td>Observability</td>
-                                    <td>Cloud Monitoring, OpenTelemetry</td>
-                                </tr>
-                                <tr>
-                                    <td>AI Agent Integration</td>
-                                    <td>MCP</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <Link to="/contact" className="wa-btn">Start a conversation</Link>
                 </div>
             </section>
         </div>
