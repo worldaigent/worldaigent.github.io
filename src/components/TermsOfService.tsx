@@ -10,7 +10,7 @@ const TermsOfService: React.FC = () => {
                 <div className="legal-hero-inner">
                     <p className="legal-label">Legal</p>
                     <h1>Terms of Service</h1>
-                    <p className="legal-meta">World Aigent · worldaigent.com · Effective date: September 2026 · Version 1.1</p>
+                    <p className="legal-meta">World Aigent · worldaigent.com · Effective date: 11 September 2026 · Version 1.2</p>
                 </div>
             </header>
 
@@ -175,6 +175,7 @@ const TermsOfService: React.FC = () => {
                             <li>You may terminate your account at any time by providing 30 days' written notice</li>
                             <li>We may suspend or terminate your access immediately for material breach of these Terms, non-payment, or conduct that poses a security or legal risk</li>
                             <li>On termination we stop publishing, cancel anything still scheduled, and delete stored access tokens immediately</li>
+                            <li>Suspension is not termination. Where service is paused, for example for non-payment, your connected accounts stay connected and their tokens are retained so service can resume without you authorising us again</li>
                             <li>Your remaining data is deleted within 90 days, unless you request an export before that period. Content already published remains on the connected platform under your control.</li>
                         </ul>
                     </section>

@@ -10,7 +10,7 @@ const PrivacyPolicy: React.FC = () => {
                 <div className="legal-hero-inner">
                     <p className="legal-label">Legal</p>
                     <h1>Privacy Policy</h1>
-                    <p className="legal-meta">World Aigent · worldaigent.com · Effective date: September 2026 · Version 1.1</p>
+                    <p className="legal-meta">World Aigent · worldaigent.com · Effective date: 11 September 2026 · Version 1.2</p>
                 </div>
             </header>
 
@@ -116,16 +116,18 @@ const PrivacyPolicy: React.FC = () => {
                         <p>LinkedIn is currently the platform we publish to. This section explains what that involves. It applies equally to any other social platform we may support in future.</p>
 
                         <h3>5.1 What We Access</h3>
-                        <p>When you authorise us through LinkedIn's standard OAuth flow, you choose which permissions to grant. We request only the permissions needed to do the work you have asked for, which are the ability to identify the account, to publish posts on its behalf, and to read the performance of posts we published. We do not request access to your connections, your inbox, or your feed, and we do not read them.</p>
+                        <p>When you authorise us through LinkedIn's standard OAuth flow, you choose which permissions to grant. We request only the permissions needed to do the work you have asked for: the ability to identify the account, to publish posts on its behalf, and to read how posts on the account performed. For company pages we also request read access to comments and reactions on the page's own posts, so that analytics can be enabled later without putting you through a second authorisation. We do not request access to your connections, your private messages, or your personal news feed.</p>
 
                         <h3>5.2 How We Use It</h3>
                         <p>Data obtained from LinkedIn is used for one purpose only: operating the Service for the client who authorised the connection. Specifically, to publish the content you approved, to measure how those posts performed, and to prepare your reports. We do not use it for any other client, we do not combine it with data from other clients, and we do not disclose it to any third party.</p>
 
                         <h3>5.3 What We Store</h3>
-                        <p>We store the identifier of each post we publish, the content we generated, the publication time, and the performance metrics LinkedIn returns for those posts. We store only metrics for posts we published on your behalf.</p>
+                        <p>We store the identifier of each post we publish, the content we generated, the publication time, and the performance metrics LinkedIn returns.</p>
+                        <p>Where you enable analytics, we also retrieve and store metrics for posts published on the connected account by you or your team, not only posts we published. This is done at your instruction and is what allows your first report to compare anything at all, since a report will not draw a comparison from too small a sample.</p>
 
                         <h3>5.4 Retention and Deletion</h3>
-                        <p>Performance data is retained only as long as it is needed to produce your reports and to compare periods, and is deleted automatically once it falls outside that window. If a post is deleted on LinkedIn, we stop reporting on it. When your account with us ends, or when you disconnect a LinkedIn account, we delete the stored tokens immediately and the associated content and metrics within 90 days unless you ask us to export them first.</p>
+                        <p>Performance data is retained only as long as it is needed to produce your reports and to compare periods, and is deleted automatically once it falls outside that window. If a post is deleted on LinkedIn, we stop reporting on it. When your account with us ends, or when you disconnect a LinkedIn account, we delete the stored access tokens immediately as part of that action, and the associated content and metrics within 90 days unless you ask us to export them first.</p>
+                        <p>Suspension is different from termination. If service is paused, for example for non-payment, the account stays connected and the token is retained so that service resumes when the matter is settled, without asking you to authorise us again. Tokens are deleted on disconnection or termination, not on suspension.</p>
 
                         <h3>5.5 Withdrawing Access</h3>
                         <p>You can revoke our access at any time, either by asking us or directly in your LinkedIn account settings, without contacting us first. Revocation takes effect immediately and stops all further publishing and measurement. It does not affect posts already published, which remain under your control on LinkedIn.</p>
@@ -154,8 +156,8 @@ const PrivacyPolicy: React.FC = () => {
                         <h3>7.3 Data Retention</h3>
                         <p>We retain data for the following periods:</p>
                         <ul>
-                            <li>Workflow execution logs and usage events: 90 days in operational storage, then archived or deleted</li>
-                            <li>Account and billing data: the duration of the client relationship plus 7 years, for legal and accounting compliance</li>
+                            <li>Account, billing and usage records: the duration of the client relationship plus 7 years, for legal and accounting compliance. Usage events are billing records, because invoicing is calculated from them.</li>
+                            <li>Workflow execution records: for the duration of the client relationship, then deleted with the rest of your data on termination. The orchestration engine's own detailed history expires after 7 days.</li>
                             <li>Published content and its performance data: for the duration of the client relationship, then deleted within 90 days of termination unless exported</li>
                             <li>Source material you upload: processed and then deleted or retained in your designated storage per your configuration</li>
                             <li>Access and refresh tokens: deleted immediately on disconnection or termination</li>
@@ -171,7 +173,8 @@ const PrivacyPolicy: React.FC = () => {
                             <li><strong>Google Cloud Platform:</strong> infrastructure, databases, file storage, secret management, and speech and video processing. United States by default.</li>
                             <li><strong>Temporal Cloud:</strong> workflow orchestration and execution history.</li>
                             <li><strong>Anthropic:</strong> AI language model processing for content generation.</li>
-                            <li><strong>OpenRouter:</strong> routing of requests to AI model providers.</li>
+                            <li><strong>OpenRouter:</strong> routing of requests to AI model providers. Where a request needs current facts, OpenRouter's web search passes the topic to its own search provider.</li>
+                            <li><strong>Google Workspace:</strong> sending email that the Service composes on your behalf. This is a separate service from Google Cloud Platform above, under separate terms.</li>
                             <li><strong>Slack:</strong> the messaging channel through which clients interact with the Service, where the client has chosen Slack.</li>
                             <li><strong>Web3Forms:</strong> processing of website contact form submissions. United States.</li>
                         </ul>
