@@ -16,10 +16,10 @@ Cloud.
 2. Read the component you are changing **and** the ones around it. Copy on this
    site repeats phrases across pages; a rewrite that ignores the neighbours
    creates contradictions.
-3. Read `.clinerules/context.md` — the original positioning brief, including
-   the Google for Startups Cloud Program criteria the site has to satisfy
-   (technology startup, digital product, visible team, cloud-native business
-   model). Those constraints are still live.
+3. Keep the Google for Startups Cloud Program criteria in view. The site has
+   to read as a technology startup with a real digital product, a visible
+   team, and a cloud-native business model. That is why the Team page and the
+   Google Cloud reference stay, even when trimming everything else.
 
 ## Non-negotiable
 

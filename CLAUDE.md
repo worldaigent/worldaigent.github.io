@@ -177,5 +177,6 @@ fits:
 | `site-auditor` | Reviewing pages for claim accuracy, responsive breakage, a11y, SEO |
 | `deploy-manager` | Building, verifying and publishing to GitHub Pages |
 
-Legacy: `.clinerules/` holds the original Cline briefs that produced the
-current copy. Kept as source material for the site's intended positioning.
+Positioning is recorded in `.claude/docs/product-truth.md`, which is
+**gitignored on purpose**: this repository is public, and that file describes
+the backend architecture, the GCP project, and internal names. Never commit it.
