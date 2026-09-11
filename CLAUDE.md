@@ -139,6 +139,10 @@ content edge must be identical on the navbar, every section, and the footer.
   through `history.replaceState` before React boots. The fix is generic — new
   routes need nothing. If `404.html` is ever regenerated, it must NOT be a bare
   `location.replace("/")`.
+- `npm run deploy` names the HTTPS remote explicitly. `gh-pages` otherwise uses
+  the SSH `origin`, which fails with `Permission denied (publickey)` whenever
+  the SSH key is not loaded in the agent. HTTPS uses the osxkeychain helper and
+  works either way. To restore SSH: `ssh-add ~/.ssh/id_ed25519`.
 - Deploying from WSL2 can fail with `Failed to connect to github.com port 443`
   even when `curl` works (mirrored-networking routing). Fix order:
   `wsl --shutdown`, then deploy from Windows PowerShell, then check VPN.
