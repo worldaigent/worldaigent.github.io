@@ -145,6 +145,30 @@ content edge must be identical on the navbar, every section, and the footer.
 
 ---
 
+## Keep `~/.claude/worldaigent/WEBSITE.md` current
+
+`~/.claude/worldaigent/` holds one status file per World Aigent repo:
+**WEBSITE.md** is this site, **STATUS.md** is the backend (`~/dev/CA_Temporal`).
+They are separate so a session working on one never edits the other's file.
+They live outside both repos so any session can read them, and because this
+repo is public and some of that material must never be committed here.
+
+1. **Read WEBSITE.md before planning anything non-trivial.** It carries state
+   this repo cannot see: what the backend actually does, the positioning
+   decisions and why, what is deliberately absent from the site.
+2. **Update it in the same change that makes it wrong.** Not later. A status
+   file that describes the world incorrectly is worse than none, because it
+   gets trusted. Things here that belong in it: the deployed state of the site,
+   positioning, the legal pages or company entity, the contact-form provider,
+   deploy invariants, and any new rule about what must not be committed.
+3. **Edit WEBSITE.md only.** STATUS.md belongs to the backend repo. If
+   something you learn here changes the backend's picture, say so rather than
+   editing their file.
+4. **It is a map, not an authority.** Where it disagrees with this repo, the
+   repo is right and the file is what to fix.
+5. **No secrets, ever.** It is a plain file and it outlives any session.
+6. **Under ~120 lines.** Detail belongs in the repo; link, do not copy.
+
 ## Working rules for this repo
 
 - **No em-dashes or en-dashes (— –) in rendered copy.** It is the clearest
