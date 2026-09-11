@@ -5,9 +5,9 @@
   <meta charset="utf-8" />
   <link rel="icon" href="%PUBLIC_URL%/logo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
+  <meta name="theme-color" content="#0367BA" />
   <meta name="description"
-    content="World Aigent — AI Workflow Platform | Run durable, scalable AI workflows on Google Cloud. No infrastructure required." />
+    content="World Aigent runs a company's entire LinkedIn presence from one sentence in Slack: strategy, writing, images, scheduling, publishing, and a monthly report." />
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.png" />
   <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -23,12 +23,31 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <title>World Aigent — AI Workflow Platform</title>
+  <title>World Aigent | AI Workflows That Run Themselves</title>
+
+  <!-- IBM Plex: drawn for engineered/systems contexts; Mono carries the
+       tabular figures used for times and counts in the schedule grid. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" />
+
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
 <body>
+  <!-- Restores the path saved by 404.html, before React boots, so a deep link
+       lands on the right route. Pairs with public/404.html: changing one
+       without the other breaks every direct URL. -->
+  <script>
+    (function () {
+      var target = sessionStorage.getItem('spa_redirect');
+      if (!target) return;
+      sessionStorage.removeItem('spa_redirect');
+      if (target !== location.href) history.replaceState(null, null, target);
+    })();
+  </script>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
   <!--

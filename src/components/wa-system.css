@@ -1,0 +1,302 @@
+/* wa-system: the shared design system for every redesigned page.
+   Any page that adds `wa-page` to its wrapper gets the measure, the type
+   scale, buttons, ruled sections and lists from here. Page files hold only
+   what is genuinely unique to that page.
+
+   MOBILE FIRST: every base rule is the small-screen rule, and each @media
+   block only ever adds with min-width. No max-width query, no !important.
+
+   Deliberately avoids .container and .section: both are redefined by several
+   other component stylesheets, and the last one loaded wins. Every class here
+   is wa-* prefixed, so nothing can bleed in or out. */
+
+.wa-page {
+    /* Same measure as .container, so the hero text, the week grid, the navbar
+       and the footer all share one left edge. */
+    --wa-gutter: var(--measure-gutter);
+    --wa-max: var(--measure-max);
+
+    font-family: var(--font-sans);
+    color: var(--text-dark);
+    background: var(--background-white);
+}
+
+.wa-page .wa-measure,
+.wa-page .wa-section-head,
+.wa-page .wa-defs,
+.wa-page .wa-status-cols {
+    max-width: var(--wa-max);
+    margin-inline: auto;
+    padding-inline: var(--wa-gutter);
+}
+
+/* ---------- Type ----------
+   Sizes come from the fluid tokens, so they scale continuously with the
+   viewport and there is nothing to restate at a breakpoint. */
+
+.wa-page h1 {
+    font-size: var(--font-size-5xl);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin: 0 0 var(--spacing-xl);
+    text-wrap: balance;
+}
+
+.wa-page h2 {
+    font-size: var(--font-size-3xl);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0 0 var(--spacing-md);
+    text-wrap: balance;
+}
+
+.wa-page h3 {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 var(--spacing-lg);
+}
+
+.wa-page p {
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* ---------- Hero ----------
+   Centered. Note every centered block needs BOTH text-align (for the lines
+   inside it) and margin-inline: auto (for the max-width box itself). Setting
+   only one leaves a narrow block of centered text sitting off to the left. */
+
+.wa-page .wa-hero {
+    padding-block: var(--spacing-4xl) var(--spacing-3xl);
+    text-align: center;
+}
+
+.wa-page .wa-lead {
+    font-size: var(--font-size-lg);
+    color: var(--text-medium);
+    max-width: 58ch;
+    margin-inline: auto;
+    margin-bottom: var(--spacing-2xl);
+}
+
+/* Buttons stack full-width on a phone and sit side by side as soon as there is
+   room, driven by flex-wrap, so no breakpoint has to decide it. */
+.wa-page .wa-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.wa-page .wa-btn {
+    flex: 1 1 14rem;
+    text-align: center;
+    padding: 0.875em 1.625em;
+    background: var(--primary-dark-blue);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    border: 1px solid var(--primary-dark-blue);
+    border-radius: var(--radius-crisp);
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.wa-page .wa-btn:hover {
+    background: var(--primary-blue);
+    border-color: var(--primary-blue);
+}
+
+.wa-page .wa-btn-quiet {
+    background: transparent;
+    color: var(--primary-dark-blue);
+    border-color: var(--rule-strong);
+}
+
+.wa-page .wa-btn-quiet:hover {
+    background: var(--tint);
+    color: var(--primary-dark-blue);
+    border-color: var(--primary-dark-blue);
+}
+
+@media (min-width: 34em) {
+
+    /* Stop them growing to fill the row once they fit beside each other. */
+    .wa-page .wa-btn {
+        flex: 0 0 auto;
+    }
+}
+
+/* ---------- Sections ---------- */
+
+.wa-page .wa-section {
+    padding-block: var(--spacing-4xl);
+    border-top: 1px solid var(--rule);
+}
+
+.wa-page .wa-section-tinted {
+    background: var(--tint);
+}
+
+/* Headers centered; the DATA below them stays left-aligned. Centring a
+   definition list or a status list destroys the ragged left edge the eye
+   uses to scan it, so the centring stops here deliberately. */
+.wa-page .wa-section-head {
+    margin-bottom: var(--spacing-2xl);
+    text-align: center;
+}
+
+.wa-page .wa-section-head p {
+    color: var(--text-medium);
+    max-width: 62ch;
+    margin-inline: auto;
+    font-size: var(--font-size-lg);
+}
+
+/* Definition rows, ruled like a schedule legend, not cards.
+   Stacked by default; two columns is the wide-screen enhancement. */
+.wa-page .wa-defs {
+    margin-block: 0;
+}
+
+.wa-page .wa-def {
+    display: grid;
+    gap: var(--spacing-xs);
+    padding-block: var(--spacing-lg);
+    border-top: 1px solid var(--rule);
+}
+
+.wa-page .wa-def:last-child {
+    border-bottom: 1px solid var(--rule);
+}
+
+.wa-page .wa-def dt {
+    font-weight: 600;
+    color: var(--primary-dark-blue);
+}
+
+.wa-page .wa-def dd {
+    margin: 0;
+    color: var(--text-medium);
+    line-height: 1.6;
+    max-width: 64ch;
+}
+
+@media (min-width: 48em) {
+    .wa-page .wa-def {
+        grid-template-columns: minmax(8.75rem, 12.5rem) 1fr;
+        gap: var(--spacing-xl);
+    }
+}
+
+/* The box is centred, but the text inside stays left against its rule: a
+   centred paragraph with a left rule reads as a mistake. */
+.wa-page .wa-aside {
+    position: relative;
+    width: fit-content;
+    max-width: min(64ch, 100% - var(--wa-gutter) * 2);
+    margin-block: var(--spacing-2xl) 0;
+    margin-inline: auto;
+    padding-left: var(--spacing-lg);
+    color: var(--text-medium);
+    text-align: left;
+}
+
+.wa-page .wa-aside::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--primary-blue);
+}
+
+/* Nested inside .wa-status-cols, which already supplies the gutter. */
+.wa-page .wa-aside-tight {
+    margin-inline: 0;
+    margin-block: var(--spacing-lg) 0;
+    font-size: var(--font-size-sm);
+}
+
+.wa-page .wa-aside-tight::before {
+    background: var(--rule-strong);
+}
+
+/* ---------- Now / next ---------- */
+
+/* One centred column. The list itself stays left-aligned inside it: a
+   centred list makes the markers wander and kills the scan. */
+.wa-page .wa-status-single {
+    max-width: 34rem;
+    margin-inline: auto;
+    padding-inline: var(--wa-gutter);
+    text-align: left;
+}
+
+/* Works both as a direct section child and nested inside .wa-status-single:
+   min() caps the measure on wide screens and guarantees the gutter on narrow
+   ones, without either context needing its own rule. */
+.wa-page .wa-closing-note {
+    max-width: min(58ch, 100% - var(--wa-gutter) * 2);
+    margin-top: var(--spacing-xl);
+    margin-inline: auto;
+    color: var(--text-medium);
+    text-align: center;
+}
+
+.wa-page .wa-status-list {
+    list-style: none;
+    margin-block: 0;
+    padding: 0;
+}
+
+.wa-page .wa-status-list li {
+    position: relative;
+    padding: var(--spacing-sm) 0 var(--spacing-sm) var(--spacing-xl);
+    line-height: 1.55;
+    border-bottom: 1px solid var(--rule);
+}
+
+.wa-page .wa-status-list li::before {
+    position: absolute;
+    left: 0;
+    top: var(--spacing-sm);
+    font-size: 0.7em;
+    line-height: 1.8;
+}
+
+/* Filled marker = shipped. Hollow = not yet. The distinction is the point. */
+.wa-page .wa-status-list-live li::before {
+    content: '\25CF';
+    color: var(--status-live);
+}
+
+.wa-page .wa-status-list-next li {
+    color: var(--text-light);
+}
+
+.wa-page .wa-status-list-next li::before {
+    content: '\25CB';
+    color: var(--status-pending);
+}
+
+/* ---------- Closing ---------- */
+
+.wa-page .wa-cta {
+    padding-block: var(--spacing-4xl);
+    border-top: 2px solid var(--primary-dark-blue);
+    background: var(--background-white);
+    text-align: center;
+}
+
+.wa-page .wa-cta p {
+    color: var(--text-medium);
+    max-width: 56ch;
+    margin-inline: auto;
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-2xl);
+}

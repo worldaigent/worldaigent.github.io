@@ -1,30 +1,93 @@
+/* Import CSS Variables: must precede the rules that consume them. */
+@import url('./components/variables.css');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Everything relative resolves against this. Left at the browser default so
+     a reader who sets a larger font size gets a larger site, not a broken one. */
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--text-dark);
+  background: var(--background-white);
 }
 
+/* Full-bleed elements use 100%, never 100vw/100dvw.
+   Viewport units include the scrollbar gutter, so `width: 100dvw` on a page
+   with a vertical scrollbar is wider than the visible area and produces a
+   horizontal scrollbar on every desktop browser. % resolves against the
+   containing block, which is what "full width" actually means here. */
 html,
 body,
-.App,
 #root,
-.navbar {
-  width: 100dvw;
+.App {
+  width: 100%;
+  max-width: 100%;
 }
 
-html * {
-  box-sizing: border-box;
-  max-width: 100dvw;
+/* Last-resort guard so one wide child can never scroll the whole page.
+   `clip` rather than `hidden`: hidden makes the body a scroll container and
+   silently breaks position: sticky. */
+body {
+  overflow-x: clip;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* The actual cause of most horizontal overflow. */
+img,
+svg,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+  height: auto;
 }
 
-/* Import CSS Variables */
-@import url('./components/variables.css');
+/* Long unbroken strings (URLs, IDs) must wrap rather than widen the page. */
+p,
+li,
+dd,
+h1,
+h2,
+h3 {
+  overflow-wrap: break-word;
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+}
+
+/* Code blocks are the one thing allowed to scroll sideways, in their own box. */
+pre {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+/* Motion is opted INTO, never reset afterwards.
+   Declaring animation inside `prefers-reduced-motion: no-preference` means
+   there is nothing to override for a reader who asked for less motion, which
+   is why this file needs no `!important` to honour the preference. Keep every
+   new @keyframes usage inside a block like this one. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}

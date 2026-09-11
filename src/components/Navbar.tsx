@@ -39,8 +39,13 @@ const Navbar: React.FC = () => {
                         </Link>
                     </div>
 
-                    <button className="menu-toggle" onClick={toggleMenu}>
-                        <span className="hamburger"></span>
+                    <button
+                        className="menu-toggle"
+                        onClick={toggleMenu}
+                        aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                        aria-expanded={isMenuOpen}
+                    >
+                        <span className="hamburger" aria-hidden="true"></span>
                     </button>
                 </div>
             </div>

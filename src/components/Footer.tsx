@@ -66,6 +66,11 @@ const Footer: React.FC = () => {
             <div className="footer-bottom">
                 <div className="container">
                     <p>&copy; 2026 World Aigent. All rights reserved.</p>
+                    <div className="footer-legal-links">
+                        <Link to="/privacy-policy" className="footer-legal-link">Privacy Policy</Link>
+                        <span className="footer-legal-sep">·</span>
+                        <Link to="/terms-of-service" className="footer-legal-link">Terms of Service</Link>
+                    </div>
                 </div>
             </div>
         </footer>

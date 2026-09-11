@@ -1,200 +1,104 @@
-.how-it-works-page {
-    min-height: 100vh;
-    background-color: var(--background-white);
-    color: var(--text-dark);
-}
+/* How It Works, page-specific only. Measure, type, buttons, ruled sections
+   and definition rows come from wa-system.css via the `wa-page` class.
+   MOBILE FIRST: base rules are the phone rules; @media only adds min-width. */
 
-.section {
-    padding: var(--spacing-4xl) 0;
-}
+@import url('./wa-system.css');
 
-.section.overview {
-    background-color: var(--background-light);
-}
+/* ---------- Onboarding steps ----------
+   Numbered because this genuinely IS a sequence: first conversation, then
+   set-up, then the first campaign. Numbering anything that is merely a list
+   would be decoration. */
 
-.section.overview h1 {
-    text-align: center;
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--spacing-2xl);
-    color: var(--primary-dark-blue);
-}
-
-.steps-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-2xl);
-}
-
-.step {
-    display: flex;
-    align-items: flex-start;
-    background: var(--background-white);
-    padding: var(--spacing-2xl);
-    border-radius: var(--radius-md);
-    box-shadow: 0 4px 15px var(--shadow-light);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.step:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px var(--shadow-medium);
-}
-
-.step-number {
-    width: 60px;
-    height: 60px;
-    background: var(--gradient-primary);
-    color: var(--white);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: var(--font-size-2xl);
-    font-weight: 700;
-    margin-right: var(--spacing-xl);
-    flex-shrink: 0;
-}
-
-.step-content h3 {
-    font-size: var(--font-size-2xl);
-    margin-bottom: var(--spacing-md);
-    color: var(--primary-dark-blue);
-}
-
-.step-content p {
-    line-height: 1.6;
-    color: var(--text-medium);
-}
-
-.section.execution-flow,
-.section.file-processing {
-    background-color: var(--background-white);
-}
-
-.section.execution-flow h2,
-.section.file-processing h2 {
-    text-align: center;
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--spacing-2xl);
-    color: var(--primary-dark-blue);
-}
-
-.flow-diagram {
-    background: var(--background-light);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-2xl);
-    max-width: 800px;
-    margin: 0 auto;
-    box-shadow: 0 4px 15px var(--shadow-light);
-}
-
-.flow-diagram pre {
-    margin: 0;
-    overflow-x: auto;
-}
-
-.flow-diagram code {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: var(--font-size-base);
-    color: var(--text-dark);
-}
-
-.flow-note {
-    text-align: center;
-    font-size: var(--font-size-sm);
-    color: var(--text-medium);
-    margin-top: var(--spacing-lg);
-    font-style: italic;
-}
-
-.section.chatbot-patterns {
-    background-color: var(--background-light);
-}
-
-.section.chatbot-patterns h2 {
-    text-align: center;
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--spacing-2xl);
-    color: var(--primary-dark-blue);
-}
-
-.patterns-container {
-    max-width: 1000px;
-    margin: 0 auto;
+.how-it-works-page .hiw-steps {
+    max-width: var(--wa-max);
+    margin-inline: auto;
+    padding-inline: var(--wa-gutter);
+    list-style: none;
+    margin-block: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: var(--spacing-2xl);
+    gap: var(--spacing-xl);
 }
 
-.pattern {
-    background: var(--background-white);
-    padding: var(--spacing-2xl);
-    border-radius: var(--radius-md);
-    box-shadow: 0 4px 15px var(--shadow-light);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.pattern:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px var(--shadow-medium);
-}
-
-.pattern h3 {
-    font-size: var(--font-size-2xl);
-    margin-bottom: var(--spacing-md);
-    color: var(--primary-dark-blue);
-}
-
-.pattern p {
-    line-height: 1.6;
-    color: var(--text-medium);
-}
-
-.section.mcp-accessibility {
-    background-color: var(--background-white);
-}
-
-.section.mcp-accessibility h2 {
-    text-align: center;
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--spacing-2xl);
-    color: var(--primary-dark-blue);
-}
-
-.section.mcp-accessibility p {
-    line-height: 1.6;
-    color: var(--text-medium);
-    max-width: 900px;
-    margin: 0 auto var(--spacing-2xl);
-    text-align: center;
-}
-
-@media (max-width: 768px) {
-    .section {
-        padding: var(--spacing-3xl) var(--spacing-xl);
+@media (min-width: 52em) {
+    .how-it-works-page .hiw-steps {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-2xl);
     }
+}
 
-    .section.overview h1,
-    .section.execution-flow h2,
-    .section.chatbot-patterns h2,
-    .section.file-processing h2,
-    .section.mcp-accessibility h2 {
-        font-size: var(--font-size-3xl);
-    }
+.how-it-works-page .hiw-step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--spacing-lg);
+    align-items: start;
+    padding-top: var(--spacing-lg);
+    border-top: 2px solid var(--primary-dark-blue);
+}
 
-    .step {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .step-number {
-        margin-right: 0;
-        margin-bottom: var(--spacing-lg);
-    }
-
-    .patterns-container {
+@media (min-width: 52em) {
+    .how-it-works-page .hiw-step {
         grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
     }
+}
+
+.how-it-works-page .hiw-step-n {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-lg);
+    font-variant-numeric: tabular-nums;
+    color: var(--primary-blue);
+    line-height: 1.2;
+}
+
+.how-it-works-page .hiw-step h3 {
+    font-size: var(--font-size-lg);
+    color: var(--primary-dark-blue);
+    margin-bottom: var(--spacing-xs);
+}
+
+.how-it-works-page .hiw-step p {
+    color: var(--text-medium);
+    max-width: 44ch;
+}
+
+/* ---------- The things you would type ----------
+   Set in mono and quoted, because these are literal strings a person types,
+   the one job mono is actually doing on this site. */
+
+.how-it-works-page .hiw-asks {
+    max-width: min(46rem, 100% - var(--wa-gutter) * 2);
+    margin-inline: auto;
+}
+
+.how-it-works-page .hiw-asks ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--rule);
+}
+
+.how-it-works-page .hiw-asks li {
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    color: var(--text-dark);
+    padding: var(--spacing-md) 0 var(--spacing-md) var(--spacing-xl);
+    border-bottom: 1px solid var(--rule);
+}
+
+.how-it-works-page .hiw-asks li::before {
+    content: '\203A';
+    position: absolute;
+    left: 0;
+    color: var(--primary-blue);
+    font-size: var(--font-size-lg);
+    line-height: 1.2;
+}
+
+.how-it-works-page .hiw-asks-note {
+    margin-top: var(--spacing-lg);
+    font-size: var(--font-size-sm);
+    color: var(--text-light);
+    text-align: center;
 }

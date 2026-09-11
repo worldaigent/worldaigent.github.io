@@ -1,182 +1,109 @@
-.product-page {
-    min-height: 100vh;
-    background-color: var(--background-white);
-    color: var(--text-dark);
-}
+/* Product, page-specific only. The measure, type scale, buttons, ruled
+   sections and lists all come from wa-system.css via the `wa-page` class.
+   MOBILE FIRST: base rules are the phone rules; @media only adds min-width. */
 
-.section {
-    padding: var(--spacing-4xl) 0;
-}
+@import url('./wa-system.css');
 
-.section.what-it-is {
-    background-color: var(--background-light);
-}
+/* ---------- The division of labour ----------
+   Two columns of unequal length is the whole argument: your team's list is
+   short on purpose. They are NOT equal-width, because equal columns would
+   quietly undercut the point the section is making. */
 
-.section.what-it-is h1 {
-    text-align: center;
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--spacing-xl);
-    color: var(--primary-dark-blue);
-}
-
-.section.what-it-is p {
-    text-align: center;
-    font-size: var(--font-size-xl);
-    max-width: 900px;
-    margin: 0 auto;
-    line-height: 1.6;
-    color: var(--text-medium);
-}
-
-.section.key-features {
-    background-color: var(--background-white);
-}
-
-.section.key-features h2 {
-    text-align: center;
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--spacing-2xl);
-    color: var(--primary-dark-blue);
-}
-
-.feature-grid {
+.product-page .pd-split {
+    max-width: var(--wa-max);
+    margin-inline: auto;
+    padding-inline: var(--wa-gutter);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: var(--spacing-2xl);
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-xl);
 }
 
-.feature-block {
-    background: var(--background-light);
-    padding: var(--spacing-2xl);
-    border-radius: var(--radius-md);
-    box-shadow: 0 4px 15px var(--shadow-light);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+@media (min-width: 48em) {
+    .product-page .pd-split {
+        grid-template-columns: 1fr 1.35fr;
+        gap: var(--spacing-4xl);
+    }
 }
 
-.feature-block:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px var(--shadow-medium);
-}
-
-.feature-block h3 {
-    font-size: var(--font-size-2xl);
-    margin-bottom: var(--spacing-lg);
-    color: var(--primary-dark-blue);
-}
-
-.feature-block p {
-    line-height: 1.6;
-    color: var(--text-medium);
-}
-
-.section.workflow-model {
-    background-color: var(--background-light);
-}
-
-.section.workflow-model h2 {
-    text-align: center;
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--spacing-2xl);
-    color: var(--primary-dark-blue);
-}
-
-.code-block {
-    background: var(--background-white);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-2xl);
-    margin: 0 auto;
-    max-width: 800px;
-    box-shadow: 0 4px 15px var(--shadow-light);
-}
-
-.code-block pre {
-    margin: 0;
-    overflow-x: auto;
-}
-
-.code-block code {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: var(--font-size-base);
-    color: var(--text-dark);
-}
-
-.code-caption {
-    text-align: center;
-    font-size: var(--font-size-sm);
-    color: var(--text-medium);
-    margin-top: var(--spacing-lg);
-    font-style: italic;
-}
-
-.section.technology-stack {
-    background-color: var(--background-white);
-}
-
-.section.technology-stack h2 {
-    text-align: center;
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--spacing-2xl);
-    color: var(--primary-dark-blue);
-}
-
-.tech-table {
-    max-width: 800px;
-    margin: 0 auto;
-    overflow-x: auto;
-}
-
-.tech-table table {
-    width: 100%;
-    border-collapse: collapse;
-    background: var(--background-light);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: 0 4px 15px var(--shadow-light);
-}
-
-.tech-table th,
-.tech-table td {
-    padding: var(--spacing-lg);
-    text-align: left;
-    border-bottom: 1px solid var(--border-light);
-}
-
-.tech-table th {
-    background-color: var(--primary-dark-blue);
-    color: var(--white);
-    font-weight: 600;
+.product-page .pd-col h3 {
     font-size: var(--font-size-lg);
+    padding-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--rule-strong);
 }
 
-.tech-table tr:last-child td {
-    border-bottom: none;
+.product-page .pd-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.tech-table tr:hover {
-    background-color: var(--hover-light);
+.product-page .pd-col li {
+    position: relative;
+    padding: var(--spacing-sm) 0 var(--spacing-sm) var(--spacing-xl);
+    line-height: 1.55;
+    border-bottom: 1px solid var(--rule);
 }
 
-@media (max-width: 768px) {
-    .section {
-        padding: var(--spacing-3xl) var(--spacing-xl);
-    }
+.product-page .pd-col li::before {
+    position: absolute;
+    left: 0;
+    top: var(--spacing-sm);
+    font-size: 0.7em;
+    line-height: 1.8;
+}
 
-    .section.what-it-is h1,
-    .section.key-features h2,
-    .section.workflow-model h2,
-    .section.technology-stack h2 {
-        font-size: var(--font-size-3xl);
-    }
+.product-page .pd-col-you h3 {
+    color: var(--text-medium);
+    border-bottom-color: var(--rule);
+}
 
-    .feature-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-    }
+.product-page .pd-col-you li {
+    color: var(--text-medium);
+}
 
-    .code-block {
-        padding: var(--spacing-lg);
+.product-page .pd-col-you li::before {
+    content: '\25CB';
+    color: var(--status-pending);
+}
+
+.product-page .pd-col-us h3 {
+    color: var(--primary-dark-blue);
+}
+
+.product-page .pd-col-us li::before {
+    content: '\25CF';
+    color: var(--status-live);
+}
+
+/* ---------- Commercial ---------- */
+
+.product-page .pd-commercial {
+    max-width: var(--wa-max);
+    margin-inline: auto;
+    padding-inline: var(--wa-gutter);
+    display: grid;
+    gap: var(--spacing-2xl);
+}
+
+@media (min-width: 48em) {
+    .product-page .pd-commercial {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-4xl);
     }
+}
+
+.product-page .pd-phase {
+    padding-top: var(--spacing-lg);
+    border-top: 2px solid var(--primary-dark-blue);
+}
+
+.product-page .pd-phase h3 {
+    font-size: var(--font-size-lg);
+    color: var(--primary-dark-blue);
+    margin-bottom: var(--spacing-sm);
+}
+
+.product-page .pd-phase p {
+    color: var(--text-medium);
+    max-width: 46ch;
 }

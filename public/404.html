@@ -6,16 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>World Aigent</title>
     <script>
-        // Redirect to home page for any route that doesn't exist
-        window.location.href = "/";
+        /* GitHub Pages serves this for any path it has no file for, which is
+           every client-side route. Save the path the visitor actually asked
+           for, then load the app at the root. index.html replays it before
+           React boots, so the router renders the right page.
+
+           This must NOT be reduced to a bare location.replace("/"): that
+           discards the path and sends every deep link to the homepage. */
+        sessionStorage.setItem('spa_redirect', location.href);
+        location.replace(location.protocol + '//' + location.host + '/');
     </script>
 </head>
 
-<body>
-    <script>
-        // Fallback in case the above redirect doesn't work
-        window.location.replace("/");
-    </script>
-</body>
+<body></body>
 
 </html>

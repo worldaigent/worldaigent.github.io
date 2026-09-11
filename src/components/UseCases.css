@@ -1,111 +1,57 @@
-.use-cases-page {
-    min-height: 100vh;
-    background-color: var(--background-white);
-    color: var(--text-dark);
-}
+/* Use Cases, page-specific only. Everything shared comes from wa-system.css
+   via the `wa-page` class. MOBILE FIRST: base is the phone rule; @media adds. */
 
-.section {
-    padding: var(--spacing-4xl) 0;
-}
+@import url('./wa-system.css');
 
-.section.hero {
-    background: var(--gradient-primary);
-    color: var(--white);
-    text-align: center;
-}
-
-.section.hero h1 {
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--spacing-xl);
-    font-weight: 700;
-}
-
-.section.hero p {
-    font-size: var(--font-size-xl);
-    max-width: 800px;
-    margin: 0 auto;
-    opacity: 0.9;
-    line-height: 1.6;
-}
-
-.section.use-cases-grid {
-    background-color: var(--background-light);
-}
-
-.section.use-cases-grid h2 {
-    text-align: center;
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--spacing-3xl);
-    color: var(--primary-dark-blue);
-}
-
-.cases-grid {
+/* Intrinsic grid: reflows on its own, no breakpoint. min() keeps the track
+   from overflowing a viewport narrower than the floor. */
+.use-cases-page .uc-grid {
+    max-width: var(--wa-max);
+    margin-inline: auto;
+    padding-inline: var(--wa-gutter);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--spacing-2xl);
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-xl);
+    grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+    gap: var(--spacing-2xl) var(--spacing-4xl);
 }
 
-.use-case-card {
-    background: var(--background-white);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-2xl);
-    box-shadow: 0 4px 15px var(--shadow-light);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+/* A top rule, not a card: no radius, no shadow, no filled panel.
+   Flex column + margin-top:auto on the footer pins the "who" line to the
+   bottom of every card, so they align across a row even though the bodies
+   are different lengths. Grid items stretch to the row height by default,
+   which is what makes that work. */
+.use-cases-page .uc-case {
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--spacing-lg);
+    border-top: 2px solid var(--primary-dark-blue);
 }
 
-.use-case-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px var(--shadow-medium);
-}
-
-.use-case-card h2 {
-    font-size: var(--font-size-2xl);
-    margin-bottom: var(--spacing-lg);
+.use-cases-page .uc-case h2 {
+    font-size: var(--font-size-lg);
+    line-height: 1.3;
     color: var(--primary-dark-blue);
+    margin-bottom: var(--spacing-sm);
+    text-wrap: balance;
 }
 
-.use-case-card p {
-    line-height: 1.6;
-    color: var(--text-medium);
+/* The problem is set quieter than the answer, so the eye lands on the answer. */
+.use-cases-page .uc-problem {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-md);
+    max-width: 46ch;
+}
+
+.use-cases-page .uc-answer {
+    color: var(--text-dark);
     margin-bottom: var(--spacing-lg);
+    max-width: 46ch;
 }
 
-.users-tag {
-    background-color: var(--background-lighter);
-    padding: var(--spacing-md) var(--spacing-lg);
-    border-radius: var(--radius-sm);
+.use-cases-page .uc-who {
+    margin-top: auto;
     font-size: var(--font-size-sm);
-}
-
-.users-tag .label {
-    font-weight: 600;
-    color: var(--primary-dark-blue);
-    margin-right: var(--spacing-md);
-}
-
-.users-tag .users {
-    color: var(--text-medium);
-}
-
-@media (max-width: 768px) {
-    .section {
-        padding: var(--spacing-3xl) var(--spacing-xl);
-    }
-
-    .section.hero h1 {
-        font-size: var(--font-size-3xl);
-    }
-
-    .section.hero p {
-        font-size: var(--font-size-base);
-        padding: 0 var(--spacing-md);
-    }
-
-    .cases-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-    }
+    color: var(--text-light);
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid var(--rule);
+    max-width: 46ch;
 }
