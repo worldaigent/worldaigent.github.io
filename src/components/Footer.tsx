@@ -70,6 +70,8 @@ const Footer: React.FC = () => {
                         <Link to="/privacy-policy" className="footer-legal-link">Privacy Policy</Link>
                         <span className="footer-legal-sep">·</span>
                         <Link to="/terms-of-service" className="footer-legal-link">Terms of Service</Link>
+                        <span className="footer-legal-sep">·</span>
+                        <Link to="/dpa" className="footer-legal-link">DPA</Link>
                     </div>
                 </div>
             </div>

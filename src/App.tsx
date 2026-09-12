@@ -9,6 +9,7 @@ import Team from './components/Team';
 import Contact from './components/Contact';
 import TermsOfService from './components/TermsOfService';
 import PrivacyPolicy from './components/PrivacyPolicy';
+import DataProcessingAgreement from './components/DataProcessingAgreement';
 import Footer from './components/Footer';
 import './App.css';
 
@@ -34,6 +35,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/dpa" element={<DataProcessingAgreement />} />
           </Routes>
         </main>
         <Footer />
